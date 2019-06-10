@@ -1,2 +1,6 @@
 # face_detection_demo
-A flask website implementing face detection
+An implementation of opencv dnn face-detection
+
+
+#Installing the requirements
+pip install -r requirements.txt
