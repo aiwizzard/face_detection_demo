@@ -3,6 +3,7 @@ import os
 import secrets
 from PIL import Image
 
+
 def save_picture(picture):
     random_name = secrets.token_hex(8)
     _, file_ext = os.path.splitext(picture.filename)
