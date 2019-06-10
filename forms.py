@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from models import User
+# importing the function to detect if the picture contains a face
 from detect_faces.detect_faces import detect
 
 
@@ -49,6 +50,7 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
 
+    # validate that the input picture actually contains a face in it
     def validate_picture(self, picture):
         if not detect(picture.data):
             raise ValidationError('You have to choose a profile picture containing a face')

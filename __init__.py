@@ -13,4 +13,4 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 login_manager.init_app(app)
 
-import main
+import main # this is important. Otherwise the notfound error will occur

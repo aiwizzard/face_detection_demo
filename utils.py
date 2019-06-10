@@ -3,7 +3,7 @@ import os
 import secrets
 from PIL import Image
 
-
+# function to crop and save the picture 
 def save_picture(picture):
     random_name = secrets.token_hex(8)
     _, file_ext = os.path.splitext(picture.filename)
