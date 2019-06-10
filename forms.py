@@ -4,6 +4,7 @@ from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from models import User
+from detect_faces.detect_faces import detect
 
 
 class RegistrationForm(FlaskForm):
@@ -11,7 +12,6 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
-    picture = FileField('Update Profile Picture', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -48,3 +48,7 @@ class UpdateAccountForm(FlaskForm):
             user = User.query.filter_by(email=email.data).first()
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
+
+    def validate_picture(self, picture):
+        if not detect(picture.data):
+            raise ValidationError('You have to choose a profile picture containing a face')
