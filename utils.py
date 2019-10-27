@@ -1,10 +1,18 @@
+"""
+This module contains the utility functions.
+"""
+
 from flask import current_app
 import os
 import secrets
+# for image related operations
 from PIL import Image
 
-# function to crop and save the picture 
+ 
 def save_picture(picture):
+    """
+    this function crops and the save the image
+    """
     random_name = secrets.token_hex(8)
     _, file_ext = os.path.splitext(picture.filename)
     picture_name = random_name + file_ext
